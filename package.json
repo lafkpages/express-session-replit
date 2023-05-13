@@ -7,7 +7,7 @@
   "scripts": {
     "test": "node test.js",
     "prepare": "tsc",
-    "prepublishOnly": "tslint -p tsconfig.json",
+    "prepublishOnly": "tslint \"src/**/*.ts\" -p tsconfig.json",
     "preversion": "prettier --write \"src/**/*.ts\" \"src/**/*.js\""
   },
   "keywords": [
