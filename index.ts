@@ -1,13 +1,22 @@
 import { SessionData, Store } from "express-session";
 import { Client } from "replit-storage";
 
+type ReplitDBStoreOptions = {
+  url?: string
+};
+
 class ReplitDBStore extends Store {
   repldb: Client;
 
-  constructor() {
+  constructor(opts: ReplitDBStoreOptions = {}) {
     super();
 
-    this.repldb = new Client();
+    opts = {
+      url: undefined,
+      ...opts
+    };
+
+    this.repldb = new Client(opts.url);
   }
 
   get(sid: string, cb: Function) {
