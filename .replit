@@ -1,6 +1,6 @@
 entrypoint = "src/index.ts"
 
-run = "node test.js"
+run = "npm run test"
 
 compile = "npm run prepare && npm run prepublishOnly"
 
