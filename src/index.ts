@@ -6,6 +6,8 @@ type ReplitDBStoreOptions = {
   prefix?: string;
 };
 
+const noop = (_err?: unknown, _data?: any) => {};
+
 class ReplitDBStore extends Store {
   prefix: string;
   repldb: Client;
@@ -28,7 +30,7 @@ class ReplitDBStore extends Store {
     return `${this.prefix}${sid}`;
   }
 
-  get(sid: string, cb: Function) {
+  get(sid: string, cb = noop) {
     const key = this.getKey(sid);
 
     this.repldb
@@ -39,7 +41,7 @@ class ReplitDBStore extends Store {
       .catch(cb);
   }
 
-  set(sid: string, data: SessionData, cb: Function | undefined) {
+  set(sid: string, data: SessionData, cb = noop) {
     const key = this.getKey(sid);
 
     this.repldb
@@ -52,7 +54,7 @@ class ReplitDBStore extends Store {
       .catch(cb);
   }
 
-  destroy(sid: string, cb: Function | undefined) {
+  destroy(sid: string, cb = noop) {
     const key = this.getKey(sid);
 
     this.repldb
@@ -63,7 +65,7 @@ class ReplitDBStore extends Store {
       .catch(cb);
   }
 
-  clear(cb: Function | undefined) {
+  clear(cb = noop) {
     this.repldb
       .list({
         prefix: this.prefix,
@@ -78,7 +80,7 @@ class ReplitDBStore extends Store {
       });
   }
 
-  length(cb: Function) {
+  length(cb = noop) {
     this.repldb
       .list()
       .then((keys) => {
