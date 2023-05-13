@@ -1,6 +1,6 @@
 const express = require("express");
 const session = require("express-session");
-const ReplDBStore = require("./dist/index").default;
+const ReplDBStore = require("./lib/index.js").default;
 
 const app = express();
 
