@@ -17,3 +17,6 @@ index.ts
 # Prettier
 .prettierignore
 .prettierrc
+
+# TypeScript
+tsconfig.json
