@@ -15,7 +15,7 @@ class ReplitDBStore extends Store {
 
     opts = {
       url: undefined,
-      prefix: "",
+      prefix: "session_",
       ...opts,
     };
 
