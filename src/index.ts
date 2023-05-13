@@ -6,7 +6,7 @@ type ReplitDBStoreOptions = {
   prefix?: string;
 };
 
-const noop = (_err?: unknown, _data?: any) => {};
+const noop = (_err?: unknown, _data?: any) => { return; };
 
 class ReplitDBStore extends Store {
   prefix: string;
@@ -50,7 +50,7 @@ class ReplitDBStore extends Store {
       })
       .then(() => {
         if (cb) {
-          cb && cb(null);
+          cb(null);
         }
       })
       .catch(cb);
@@ -63,7 +63,7 @@ class ReplitDBStore extends Store {
       .delete(key)
       .then(() => {
         if (cb) {
-          cb && cb(null);
+          cb(null);
         }
       })
       .catch(cb);
@@ -79,7 +79,7 @@ class ReplitDBStore extends Store {
           .deleteMany(keys)
           .then(() => {
             if (cb) {
-              cb && cb(null);
+              cb(null);
             }
           })
           .catch(cb);
