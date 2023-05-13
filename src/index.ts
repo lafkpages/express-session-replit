@@ -49,7 +49,9 @@ class ReplitDBStore extends Store {
         [key]: data,
       })
       .then(() => {
-        cb && cb(null);
+        if (cb) {
+          cb && cb(null);
+        }
       })
       .catch(cb);
   }
@@ -60,7 +62,9 @@ class ReplitDBStore extends Store {
     this.repldb
       .delete(key)
       .then(() => {
-        cb && cb(null);
+        if (cb) {
+          cb && cb(null);
+        }
       })
       .catch(cb);
   }
@@ -74,7 +78,9 @@ class ReplitDBStore extends Store {
         this.repldb
           .deleteMany(keys)
           .then(() => {
-            cb && cb(null);
+            if (cb) {
+              cb && cb(null);
+            }
           })
           .catch(cb);
       });
