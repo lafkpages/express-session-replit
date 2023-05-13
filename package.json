@@ -1,5 +1,5 @@
 {
-  "name": "nodejs",
+  "name": "express-session-replit",
   "version": "1.0.0",
   "description": "An Express session store that uses the Replit database.",
   "main": "lib/index.js",
@@ -7,7 +7,8 @@
   "scripts": {
     "test": "node test.js",
     "prepare": "tsc",
-    "prepublishOnly": "tslint -p tsconfig.json"
+    "prepublishOnly": "tslint -p tsconfig.json",
+    "preversion": "prettier --write \"src/**/*.ts\" \"src/**/*.js\""
   },
   "keywords": [
     "express",
