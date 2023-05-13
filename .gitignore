@@ -1,0 +1,10 @@
+# Replit
+.config
+.cache
+.upm
+
+# NPM
+node_modules
+
+# Builds
+dist
