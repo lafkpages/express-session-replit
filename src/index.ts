@@ -75,7 +75,7 @@ class ReplitDBStore extends Store {
         prefix: this.prefix,
       })
       .then((keys) => {
-        this.repldb
+        this.repldb // @ts-ignore
           .deleteMany(keys)
           .then(() => {
             if (cb) {
