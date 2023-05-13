@@ -2,6 +2,8 @@
 .config
 .cache
 .upm
+.replit
+replit.nix
 
 # NPM
 node_modules
@@ -11,3 +13,7 @@ test.js
 
 # Source
 index.ts
+
+# Prettier
+.prettierignore
+.prettierrc
