@@ -9,7 +9,7 @@
   "keywords": [
     "express", "session", "replit", "repl", "it", "db", "kv"
   ],
-  "author": "",
+  "author": "LuisAFK",
   "license": "ISC",
   "dependencies": {
     "@types/express-session": "^1.17.7",
