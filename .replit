@@ -1,8 +1,8 @@
-entrypoint = "index.ts"
+entrypoint = "src/index.ts"
 
 run = "node test.js"
 
-compile = "esbuild index.ts --outdir=dist --sourcemap --target=node18 --platform=node --format=cjs --log-level=warning"
+compile = "esbuild src/index.ts --outdir=dist --sourcemap --target=node18 --platform=node --format=cjs --log-level=warning"
 
 hidden = [".config", "package-lock.json"]
 
