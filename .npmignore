@@ -1,0 +1,13 @@
+# Replit
+.config
+.cache
+.upm
+
+# NPM
+node_modules
+
+# Testing
+test.js
+
+# Source
+index.ts
