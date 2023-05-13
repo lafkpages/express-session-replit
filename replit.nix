@@ -1,7 +1,6 @@
 { pkgs }: {
 	deps = [
     pkgs.yarn
-    pkgs.esbuild
 		pkgs.nodejs-18_x
     pkgs.replitPackages.jest
     pkgs.nodePackages.prettier
