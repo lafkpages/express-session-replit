@@ -2,10 +2,12 @@ import { SessionData, Store } from "express-session";
 import { Client } from "replit-storage";
 
 type ReplitDBStoreOptions = {
-  url?: string
+  url?: string;
+  prefix?: string;
 };
 
 class ReplitDBStore extends Store {
+  prefix: string;
   repldb: Client;
 
   constructor(opts: ReplitDBStoreOptions = {}) {
@@ -13,15 +15,24 @@ class ReplitDBStore extends Store {
 
     opts = {
       url: undefined,
-      ...opts
+      prefix: "",
+      ...opts,
     };
+
+    this.prefix = opts.prefix || "";
 
     this.repldb = new Client(opts.url);
   }
 
+  getKey(sid: string) {
+    return `${this.prefix}${sid}`;
+  }
+
   get(sid: string, cb: Function) {
+    const key = this.getKey(sid);
+
     this.repldb
-      .get(sid)
+      .get(key)
       .then((data) => {
         cb(null, data);
       })
@@ -29,9 +40,11 @@ class ReplitDBStore extends Store {
   }
 
   set(sid: string, data: SessionData, cb: Function | undefined) {
+    const key = this.getKey(sid);
+
     this.repldb
       .set({
-        [sid]: data,
+        [key]: data,
       })
       .then(() => {
         cb && cb(null);
@@ -40,8 +53,10 @@ class ReplitDBStore extends Store {
   }
 
   destroy(sid: string, cb: Function | undefined) {
+    const key = this.getKey(sid);
+
     this.repldb
-      .delete(sid)
+      .delete(key)
       .then(() => {
         cb && cb(null);
       })
@@ -50,11 +65,17 @@ class ReplitDBStore extends Store {
 
   clear(cb: Function | undefined) {
     this.repldb
-      .empty()
-      .then(() => {
-        cb && cb(null);
+      .list({
+        prefix: this.prefix,
       })
-      .catch(cb);
+      .then((keys) => {
+        this.repldb
+          .deleteMany(keys)
+          .then(() => {
+            cb && cb(null);
+          })
+          .catch(cb);
+      });
   }
 
   length(cb: Function) {
